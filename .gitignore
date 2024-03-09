@@ -11,3 +11,7 @@ build/
 *.h5
 *.pkl
 *.joblib
+
+#ignore data folder
+data/
+```
