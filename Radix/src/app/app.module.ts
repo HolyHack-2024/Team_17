@@ -6,6 +6,7 @@ import { AppComponent } from './shared/app.component';
 import { NavigationComponent } from './shared/navigation/navigation.component';
 import { ChatComponentComponent } from './modules/chat-component/chat-component.component';
 import { HomeComponent } from './modules/home/home.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HomeComponent } from './modules/home/home.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
