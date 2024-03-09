@@ -1,3 +1,6 @@
+import sys
+from pathlib import Path
+
 import functools
 import logging
 import math
@@ -12,7 +15,8 @@ from colormath.color_conversions import convert_color
 from colormath.color_diff import delta_e_cie2000
 from colormath.color_objects import sRGBColor, LabColor
 
-from src.extra.utils import is_url, extract_filename_and_extension, alphabet_id, ArgumentError
+from utils import is_url, extract_filename_and_extension, alphabet_id, ArgumentError
+
 
 LOG = logging.getLogger(__name__)
 

@@ -1,13 +1,20 @@
-import cv2
-import numpy as np
-from sklearn.metrics import classification_report, accuracy_score
 from pathlib import Path
 import logging
 from typing import Union, Literal
+import sys
+
+# Add the root directory of the project to the system path
+# Assuming the script is run from within the src/evaluation directory
+project_root = Path(__file__).resolve().parents[2]
+sys.path.append(str(project_root))
+
 
 import cv2
+import numpy as np
+from sklearn.metrics import classification_report, accuracy_score
 
-from src.models.base.tone_model import (
+# Import your model and any other necessary functions
+from tone_model import (
     load_image,
     is_black_white,
     DEFAULT_TONE_PALETTE,
@@ -15,13 +22,13 @@ from src.models.base.tone_model import (
     process_image,
     normalize_palette,
 )
-from src.extra.utils import ArgumentError
+from utils import ArgumentError
 
 LOG = logging.getLogger(__name__)
 
 
 # Path to your test dataset
-TEST_DATA_DIR = Path('/path/to/your/test/data')
+TEST_DATA_DIR = Path('/Users/suleymanismaylov/Desktop/HolyHack-2024/Team_17/data/')
 TEST_LABELS_FILE = TEST_DATA_DIR / 'test_labels.txt'  # A simple text file with image_path, label pairs
 
 # Load your model - adjust this part according to how your model is saved/loaded
