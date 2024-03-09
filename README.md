@@ -1,44 +1,65 @@
-Project Title: Comprehensive Skin Analysis and Product Recommendation System
+# Comprehensive Skin Analysis and Product Recommendation System
 
-Overview
+## Project Overview
 
-Our project aims to provide a personalized skincare experience by analyzing the user's skin concerns, specifically focusing on acne level, skin type, and skin tone. Based on the analysis, our system recommends products that are tailored to the user's specific needs.
+This system provides a bespoke skincare solution by evaluating user-specific skin concerns, emphasizing acne severity, skin type, and skin tone. Leveraging sophisticated machine learning models, the system offers personalized product recommendations conducive to each user's unique skincare needs.
 
-Project Structure
+## Structure
 
-The project is divided into two main components, housed under the TEAM_17 directory:
+`TEAM_17` consists of two core components:
 
-AModel: Contains the acne detection model and its associated files.
-TModel: Houses the tone analysis model and related scripts.
-Acne Detection (AModel)
+- `AModel` - Acne detection module using a YOLOv8-based neural network.
+- `TModel` - Skin tone classification module for tailored skincare recommendations.
 
-The acne detection model utilizes a pre-trained YOLOv8 network to identify and analyze acne on the user's skin.
+### Acne Detection - `AModel`
 
-Directory Contents
-checkpoints: Stores intermediate model weights during training.
-save_model: Contains saved model weights post-training.
-working: Holds the final model used for predictions.
-acne_model.py: The main script to run the acne detection model.
-acne-detection-train.ipynb: Jupyter notebook detailing the training process.
-acne.jpeg: Sample image for testing and demonstration purposes.
-Tone Analysis (TModel)
+The acne detection module is capable of identifying varying levels of acne severity using state-of-the-art image processing techniques.
 
-The tone analysis model assesses the user's skin tone and provides a classification used to further personalize the product recommendations.
+#### Contents:
 
-Directory Contents
-api.py: The interface for interacting with the model to process images.
-combine_predict.py: Script that combines predictions from both acne and tone models.
-evaluate_tone.py: Used for evaluating the performance of the tone analysis model.
-tone_model.py: Contains the logic for the tone analysis.
-utils.py: Helper functions used across the tone analysis component.
+- `checkpoints` - Contains saved states during model training.
+- `save_model` - Stores the final trained model weights.
+- `working` - The operational directory with the production-ready model.
+- `acne_model.py` - The executable script for acne detection.
+- `acne-detection-train.ipynb` - A Jupyter notebook outlining the training regimen.
+- `acne.jpeg` - A test image for demonstration.
 
-Workflow
+### Tone Analysis - `TModel`
 
-The workflow depicted in the architecture diagram showcases the process from image capture to product recommendation.
+This module assesses skin tone to further customize the product recommendations.
 
-Capture User Image: The user's image is captured and used as input for the models.
-Models: The AModel and TModel concurrently process the image to determine acne concern level, skin type, and skin tone.
-Output from the Models: The results are compiled and sent to the recommendation system.
-User Additional Input: If necessary, additional user input can be provided to refine the results.
-Recommendation System: Based on the analysis, the system generates a set of personalized product recommendations.
-Recommended Products: The user is presented with the product recommendations.
+#### Contents:
+
+- `api.py` - API interface for image processing tasks.
+- `combine_predict.py` - Integrates output from both acne detection and tone analysis.
+- `evaluate_tone.py` - Evaluates the tone analysis model's performance.
+- `tone_model.py` - Encapsulates the tone analysis logic.
+- `utils.py` - Utility functions for the module.
+
+## Workflow
+
+1. **Image Capture**: User's facial image is captured as the primary input.
+2. **Processing**: Both `AModel` and `TModel` process the image to determine skin metrics.
+3. **Results Compilation**: The outputs are aggregated and sent to the recommendation system.
+4. **Additional Input**: Users can provide extra information to refine the recommendations.
+5. **Recommendation System**: Generates tailored skincare product recommendations.
+6. **Output**: Users receive personalized product suggestions.
+
+## Getting Started
+
+Clone the project repository and follow the setup instructions for each model directory.
+
+### Prerequisites
+
+- Python 3.8 or higher
+- TensorFlow 2.x
+- OpenCV
+- Matplotlib
+- Jupyter (if running notebooks)
+
+### Installation
+
+Use `pip` to install the required packages:
+
+```shell
+pip install -r requirements.txt
