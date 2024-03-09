@@ -1,0 +1,110 @@
+<div class="p-4 sm:ml-64">
+  <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+    <div class="grid grid-cols-2 gap-4 mb-4">
+      <!--Chat and search function-->
+      <div class="flex items-center justify-start h-24 rounded bg-white dark:bg-gray-800">
+        <div class="w-full">
+          <h1 class="text-3xl text-gray-700">Chat</h1>
+          <input type="text" id="input" class="bg-gray-50 border mt-0.5 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Chats...">
+        </div>
+      </div>
+      <!--Status bubble -->
+      <div class="flex items-center justify-center h-24 rounded bg-white dark:bg-gray-800">
+        <span class="inline-block text-gray-700">
+          Status: <span class="inline-block align-text-bottom w-4 h-4 bg-green-400 rounded-full border-2 border-white"></span> <b>Online</b>
+          <span class="inline-block align-text-bottom">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-4 h-4"><path d="M19 9l-7 7-7-7"></path></svg>
+          </span>
+        </span>
+        <span class="inline-block ml-8 text-gray-700 hover:text-gray-900 align-bottom">
+          <span class="block h-6 w-6 p-1 rounded-full hover:bg-gray-400">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-4 h-4"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+          </span>
+        </span>
+      </div>
+    </div>
+    <div class="grid grid-cols-3 mb-4 gap-4">
+      <!--Chat bubble thing-->
+      <div class="flex flex-col w-full h-300 overflow-y-auto items-start justify-start rounded bg-white dark:bg-green-400">
+        <div class="w-full">
+          <div class="entry cursor-pointer bg-white mb-4 rounded  flex shadow-md border-l-4 border-green-500">
+            <div class="flex-2">
+              <div class="w-12 h-12 relative">
+                <img class="w-12 h-12 rounded-full mx-auto" src="assets/img.jpg" alt="chat-user" />
+                <span class="absolute w-4 h-4 bg-green-500 rounded-full right-0 bottom-0 border-2 border-white"></span>
+              </div>
+            </div>
+            <div class="flex-1 px-2">
+              <div class="truncate w-32"><span class="text-gray-800">Team_17_Holy_Hack</span></div>
+              <div><small class="text-gray-600">Yea, Sure!</small></div>
+            </div>
+            <div class="flex-2 text-right">
+              <div><small class="text-gray-500">{{date | date:'dd MMMM'}}</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Chat visible-->
+      <div class="col-span-2 flex h-300 overflow-y-auto rounded bg-white dark:bg-green-400">
+        <div class="w-full">
+          <div class="flex-3">
+            <h2 class="text-xl py-1 mb-8 border-b-2 border-gray-200">Chatting with <b>Team_17_Holy_Hack</b></h2>
+          </div>
+          <div class="flex-1">
+            <div class=" mb-4 flex">
+              <div class="flex-2">
+                <div class="w-12 h-12 relative">
+                  <img class="w-12 h-12 rounded-full mx-auto" src="assets/img.jpg" alt="chat-user" />
+                  <span class="absolute w-4 h-4 bg-green-500 rounded-full right-0 bottom-0 border-2 border-white"></span>
+                </div>
+              </div>
+              <div class="flex-1 px-2">
+                <div class="inline-block bg-gray-300 rounded-full p-2 px-6 text-gray-700">
+                  <span>Hey there. We would like to invite you over to our office for a visit. How about it?</span>
+                </div>
+                <div class="pl-4"><small class="text-gray-500">{{date | date:'dd MMMM'}}</small></div>
+              </div>
+            </div>
+            <div class="me-0 mb-4 flex text-right">
+              <div class="flex-1 px-2">
+                <div class="inline-block bg-blue-600 rounded-full p-2 px-6 text-white">
+                  <span>It's like a dream come true</span>
+                </div>
+                <div class="pr-4"><small class="text-gray-500">{{date |date: 'dd MMMM'}}</small></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center justify-center h-28">
+      <!--Send message area change it with something else-->
+      <div class="flex bg-white shadow rounded-lg w-full">
+        <div class="flex-3 flex content-center items-center text-center p-4 pr-0">
+          <span class="block text-center text-gray-400 hover:text-gray-800">
+            <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24" class="h-6 w-6"><path d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          </span>
+        </div>
+        <div class="flex-1 flex items-center justify-center ml-2">
+          <input type="text" id="default-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Type your message...">
+        </div>
+        <div class="flex-2 w-32 p-2 flex content-center items-center">
+          <div class="flex-1 text-center">
+            <span class="text-gray-400 hover:text-gray-800">
+              <span class="inline-block align-text-bottom">
+                <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24" class="w-6 h-6"><path d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path></svg>
+              </span>
+            </span>
+          </div>
+          <div class="flex-1">
+            <button class="bg-blue-400 w-10 h-10 rounded-full inline-block">
+              <span class="inline-block align-text-bottom">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-4 h-4 text-white"><path d="M5 13l4 4L19 7"></path></svg>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
