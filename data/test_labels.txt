@@ -1,2 +1,4 @@
-images/brendon-urie.jpg C1
-images/img_1.jpg C3
+images/brendon-urie.jpg CI
+images/img_1.jpg CI
+images/image_2_black.jpeg CE
+images/images_black_white.jpeg CF

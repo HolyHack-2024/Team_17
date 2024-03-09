@@ -298,14 +298,13 @@ def blur(image, degree=25):
 def skin_tone(colors, percents, skin_tone_palette, tone_labels):
     lab_tones = [convert_color(sRGBColor.new_from_rgb_hex(rgb), LabColor) for rgb in skin_tone_palette]
     lab_colors = [convert_color(sRGBColor(rgb_r=r, rgb_g=g, rgb_b=b, is_upscaled=True), LabColor) for b, g, r in colors]
-    # Calculate the distances using delta_e_cie2000 and sum them up after multiplying by the corresponding percent
-    distances = [np.sum([delta_e_cie2000(c, label).item() * p for c, p in zip(lab_colors, percents)]) for label in lab_tones]
-    # Find the minimum distance and the corresponding tone ID, hex value, and label
+    distances = [np.sum([delta_e_cie2000(c, label) * p for c, p in zip(lab_colors, percents)]) for label in lab_tones]
     tone_id = np.argmin(distances)
     distance = distances[tone_id]
     tone_hex = skin_tone_palette[tone_id].upper()
     tone_label = tone_labels[tone_id]
     return tone_id, tone_hex, tone_label, distance
+
 
 
 

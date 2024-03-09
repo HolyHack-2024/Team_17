@@ -56,27 +56,37 @@ def evaluate_model(test_labels, tone_palette, tone_labels):
         full_img_path = TEST_DATA_DIR / img_path
         result = process(
             filename_or_url=str(full_img_path),
-            image_type="auto",  # Let the API decide or set based on your needs
+            image_type="auto",
             tone_palette=tone_palette,
             tone_labels=tone_labels,
-            convert_to_black_white=False,  # Set based on your needs
+            convert_to_black_white=False,
             n_dominant_colors=2,
-            new_width=250,  # Adjust as necessary
-            return_report_image=False  # We don't need the report image for evaluation
+            new_width=250,
+            return_report_image=False
         )
+        
+        # Print the result for debugging
+        print(f"Image: {img_path}, True Label: {true_label}, Result: {result}")
 
-        # Check if processing was successful and a face was detected
         if result.get('faces') and len(result['faces']) > 0:
             predicted_label = result['faces'][0]['tone_label']
             y_true.append(true_label)
             y_pred.append(predicted_label)
 
-    # Calculate and print evaluation metrics
+    print("Predictions:", y_pred)
+    print("True Labels:", y_true)
+
+    # Unique labels from predictions and true labels
+    unique_labels = np.unique(y_true + y_pred)
+
+    # Filter and map tone_labels to match unique_labels for accurate representation
+    target_names_adjusted = [label for label in tone_labels if label in unique_labels]
+
     print("Classification Report:")
-    print(classification_report(y_true, y_pred, target_names=tone_labels))
+    print(classification_report(y_true, y_pred, labels=unique_labels, target_names=target_names_adjusted))
     print("Accuracy:", accuracy_score(y_true, y_pred))
-    
+
 if __name__ == "__main__":
-    model = load_model()  # Load your trained model
+    model = load_model()
     test_labels = read_test_labels(TEST_LABELS_FILE)
     evaluate_model(test_labels, DEFAULT_TONE_PALETTE['color'], DEFAULT_TONE_LABELS['color'])
