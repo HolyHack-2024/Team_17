@@ -24,6 +24,8 @@ from tone_model import (
 )
 from utils import ArgumentError
 
+from api import process
+
 LOG = logging.getLogger(__name__)
 
 
@@ -47,35 +49,34 @@ def read_test_labels(labels_file):
                 labels[parts[0]] = parts[1]
     return labels
 
-def evaluate_model(test_labels, model, tone_palette, tone_labels):
+def evaluate_model(test_labels, tone_palette, tone_labels):
     y_true, y_pred = [], []
 
     for img_path, true_label in test_labels.items():
         full_img_path = TEST_DATA_DIR / img_path
-        image = cv2.imread(str(full_img_path))
-        if image is not None:
-            # Process image (e.g., detect skin tone) - adjust according to your project's function
-            records, _ = process_image(
-                image=image,
-                is_bw=False,  # Set according to your needs or image properties
-                to_bw=False,  # Set according to your needs
-                skin_tone_palette=tone_palette,
-                tone_labels=tone_labels,
-                verbose=False  # We don't need the verbose output for evaluation
-            )
+        result = process(
+            filename_or_url=str(full_img_path),
+            image_type="auto",  # Let the API decide or set based on your needs
+            tone_palette=tone_palette,
+            tone_labels=tone_labels,
+            convert_to_black_white=False,  # Set based on your needs
+            n_dominant_colors=2,
+            new_width=250,  # Adjust as necessary
+            return_report_image=False  # We don't need the report image for evaluation
+        )
 
-            # Assuming the first record contains the prediction for the primary face
-            if records:
-                predicted_label = records[0]['tone_label']
-                y_true.append(true_label)
-                y_pred.append(predicted_label)
+        # Check if processing was successful and a face was detected
+        if result.get('faces') and len(result['faces']) > 0:
+            predicted_label = result['faces'][0]['tone_label']
+            y_true.append(true_label)
+            y_pred.append(predicted_label)
 
-    # Calculate evaluation metrics
+    # Calculate and print evaluation metrics
     print("Classification Report:")
     print(classification_report(y_true, y_pred, target_names=tone_labels))
     print("Accuracy:", accuracy_score(y_true, y_pred))
-
+    
 if __name__ == "__main__":
     model = load_model()  # Load your trained model
     test_labels = read_test_labels(TEST_LABELS_FILE)
-    evaluate_model(test_labels, model, DEFAULT_TONE_PALETTE['color'], DEFAULT_TONE_LABELS['color'])
+    evaluate_model(test_labels, DEFAULT_TONE_PALETTE['color'], DEFAULT_TONE_LABELS['color'])
