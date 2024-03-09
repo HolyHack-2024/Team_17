@@ -8,7 +8,7 @@ import { initFlowbite } from 'flowbite';
 })
 export class AppComponent {
   title = 'Radix';
-
+  date = new Date();
   ngOnInit() {
     initFlowbite();
   }
