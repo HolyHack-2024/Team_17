@@ -5,7 +5,7 @@
   </svg>
 </button>
 
-<aside *ngIf="navigationService.showNavbar$" id="sidebar-multi-level-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+<aside *ngIf="navigationService.showNavbar$| async" id="sidebar-multi-level-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
   <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
     <div class="user-profile text-center">
       <div class="w-32 h-32 rounded-full m-auto mt-16 border-2 border-white bg-white shadow-lg">
