@@ -7,7 +7,7 @@ import { initFlowbite } from 'flowbite';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Radix';
+  title = 'Face.ai';
 
   ngOnInit() {
     initFlowbite();
